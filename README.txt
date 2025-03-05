@@ -25,3 +25,9 @@ Restored C:\Users\nanak\source\repos\RFIDlock\RFIDlock.csproj (in 175 ms).
 0150 created an images folder in wwwroot and put the company logo in there
 0159 added image to _layout.cshtml for homepage
 0225 updated Home/Index.cshtml with the image dir
+
+2025-03-05
+1230 hiiiii, back again to work on this project :)
+1235 Clean and Build Solution
+0100 Made changes to site.css to change the website from white to black
+0102 push to git

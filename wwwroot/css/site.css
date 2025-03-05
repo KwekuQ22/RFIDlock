@@ -20,3 +20,94 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Global Dark Mode */
+body {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #111 !important; /* Darker navbar */
+}
+
+    .navbar .nav-link, .navbar-brand {
+        color: #fff !important; /* White navbar text */
+    }
+
+        .navbar .nav-link:hover {
+            color: #ddd !important; /* Slightly lighter hover effect */
+        }
+
+/* Buttons */
+.btn {
+    background-color: #333; /* Dark grey buttons */
+    color: #fff;
+    border: 1px solid #444;
+}
+
+    .btn:hover {
+        background-color: #555; /* Slightly lighter hover */
+    }
+
+/* Tables */
+table {
+    background-color: #222; /* Dark table */
+    color: #fff;
+}
+
+    table thead {
+        background-color: #333;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #111;
+    }
+
+/* Links */
+a {
+    color: #00ccff; /* Cyan links */
+}
+
+    a:hover {
+        color: #66e0ff;
+    }
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Fix input fields visibility */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    background-color: #222; /* Dark background */
+    color: #fff; /* White text */
+    border: 1px solid #444; /* Slight border */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    /* Change input focus color */
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: #00ccff; /* Cyan glow on focus */
+        box-shadow: 0 0 5px #00ccff;
+    }
+
+/* Button Fix */
+.btn {
+    background-color: #333; /* Dark button */
+    color: #fff;
+    border: 1px solid #444;
+}
+
+    .btn:hover {
+        background-color: #555;
+    }
