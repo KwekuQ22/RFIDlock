@@ -23,7 +23,7 @@ body {
 
 /* Global Dark Mode */
 body {
-    background-color: #000; /* Black background */
+    background-color: black; /* Black background */
     color: #fff; /* White text */
 }
 
