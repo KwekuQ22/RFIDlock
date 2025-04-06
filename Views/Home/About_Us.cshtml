@@ -1,32 +1,217 @@
 ﻿@{
     ViewData["Title"] = "About Us";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>
-    At KOCO CyberLock, we are committed to redefining security with innovative and reliable smart lock solutions. Our Arduino-based RFID Smart Lock system is designed to provide enhanced protection for homes and businesses by integrating advanced authentication, remote access, and real-time monitoring. We believe that security should be both accessible and cutting-edge, ensuring peace of mind without unnecessary complexity.
-    Our team consists of passionate professionals specializing in mobile and wireless network security, computer forensics, and software development. By combining expertise in encryption, multi-factor authentication, and intuitive mobile control, we have created a robust and user-friendly smart lock system that addresses the shortcomings of traditional locks.
-    At the core of our mission is a dedication to quality, innovation, and customer satisfaction. Unlike conventional smart locks that can be expensive, unreliable, or vulnerable to cyber threats, our solution prioritizes affordability, reliability, and top-tier security standards. Whether for homes, offices, or commercial spaces, we provide a seamless security experience tailored to modern needs.
-    Join us in revolutionizing access control and making security smarter, safer, and more convenient.
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Styling for the owner images */
+        .owner-images {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-<ul>
-    <li>
-        SecureLock One: This is the main smart lock device designed to provide secure and authorized access to homes and offices. Equipped with an RFID card reader, encrypted communication, and remote access capabilities, SecureLock One ensures that only authorized users can unlock the door through RFID authentication or the mobile app.
-    </li>
-    <li>
-        AccessKey RFID Card: A high-frequency RFID card programmed for seamless authentication with the SecureLock One system. Each card is encrypted to prevent unauthorized duplication, ensuring a secure and efficient access control method for users.
-    </li>
-    <li>
-        Guardian RFID Reader: An advanced RFID card reader designed to detect and authenticate AccessKey RFID cards instantly. The Guardian RFID Reader communicates securely with SecureLock One to grant or deny access based on the stored credentials, ensuring a fast and reliable user experience.
-    </li>
-    <li>
-        RemoteVault Admin Panel: A web-based dashboard that allows administrators to manage user access, monitor entry logs, and remotely lock or unlock doors. Integrated with multi-factor authentication, RemoteVault ensures secure access management for residential and commercial properties.
-    </li>
-    <li>
-        SafePass Web App: A companion mobile application that provides real-time monitoring and remote control of the SecureLock One system. SafePass allows users to unlock doors, manage access permissions, receive security alerts, and view access history from their smartphones for enhanced convenience and security.
-    </li>
-</ul>
+        .owner-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 15px;
+            object-fit: cover;
+            border: 3px solid #ddd;
+        }
 
+        .team-member {
+            text-align: center;
+            margin-top: 10px;
+        }
 
-<p>Their mission is to revolutionize how people use bowls, blending functionality, innovation, and style.</p>
+        .team-member h3 {
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+
+        .team-member p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Section and text styling */
+        .about-container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        ul {
+            margin-top: 20px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+        }
+
+        /* Section header for team members */
+        .team-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .team-section h2 {
+            font-size: 1.8em;
+            color: #4CAF50;
+        }
+
+        /* Styling for product list with icons */
+        .product-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .product-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-list li i {
+            font-size: 2em;
+            margin-right: 15px;
+            color: #4CAF50;
+        }
+
+        .product-list li h4 {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .product-list li p {
+            font-size: 1em;
+            color: #555;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="about-container">
+
+    <h1>@ViewData["Title"]</h1>
+
+    <p>
+        At KOCO CyberLock, we are committed to transforming security with innovative and reliable smart lock solutions. Our Arduino-based RFID Smart Lock system is designed to provide advanced protection for homes and businesses by integrating cutting-edge authentication methods, remote access features, and real-time monitoring capabilities. We believe that security should be simple, affordable, and reliable, giving you peace of mind while being user-friendly.
+    </p>
+
+    <p>
+        Our team is composed of experts in mobile and wireless network security, computer forensics, and software development. By combining specialized knowledge in encryption, multi-factor authentication, and seamless mobile control, we’ve created a robust, intuitive smart lock system that overcomes the limitations of traditional locks. At the heart of our mission is a dedication to quality, innovation, and delivering customer satisfaction.
+    </p>
+
+    <p>
+        Unlike conventional smart locks that can be costly, unreliable, or vulnerable to cyber threats, our solution emphasizes affordability, security, and reliability. Whether for residential, office, or commercial use, we deliver a streamlined security experience tailored to meet the needs of the modern world.
+    </p>
+
+    <p>
+        Join us in revolutionizing access control and experience security that is smarter, safer, and more convenient.
+    </p>
+
+    <div class="team-section">
+        <h2>Meet Our Team</h2>
+        <div class="owner-images">
+            <div class="team-member">
+                <img src="~/images/Christiana.jpg" alt="Owner 1" class="owner-image">
+                <h3>Christian</h3>
+                <p><strong>Project Manager</strong></p>
+                <p>Christian leads the project team, managing resources, schedules, and ensuring that all team members are aligned with the overall goals of the project. He ensures that the project runs smoothly and is delivered on time.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="~/images/Kweku.jpg" alt="Owner 2" class="owner-image">
+                <h3>Kweku</h3>
+                <p><strong>Backend Engineer</strong></p>
+                <p>Kweku handles the backend architecture, ensuring that the system is robust, scalable, and secure. He manages the server-side logic and integrates the RFID smart lock with the web application.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="~/images/Uju.jpg" alt="Owner 3" class="owner-image">
+                <h3>Uju</h3>
+                <p><strong>Frontend Engineer</strong></p>
+                <p>Uju is responsible for the design and development of the frontend of the KOCO CyberLock application, ensuring that the user interface is intuitive, accessible, and visually appealing.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="~/images/Osten.jpg" alt="Owner 4" class="owner-image">
+                <h3>Osten</h3>
+                <p><strong>Hardware Engineer</strong></p>
+                <p>Osten is responsible for the hardware components of the KOCO CyberLock system, ensuring that the RFID locks, readers, and other physical components function seamlessly with the software.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product List with Icons -->
+    <ul class="product-list">
+        <li>
+            <i class="fas fa-lock"></i>
+            <div>
+                <h4>SecureLock One</h4>
+                <p>The flagship smart lock device designed for secure access control to homes and offices. Equipped with RFID card reader technology, encrypted communication, and remote access capabilities, SecureLock One ensures only authorized users can gain access via RFID or mobile app.</p>
+            </div>
+        </li>
+
+        <li>
+            <i class="fas fa-credit-card"></i>
+            <div>
+                <h4>AccessKey RFID Card</h4>
+                <p>A high-frequency RFID card specifically programmed to seamlessly authenticate with the SecureLock One system. Each card is securely encrypted to prevent duplication, ensuring a high level of security and efficient access control.</p>
+            </div>
+        </li>
+
+        <li>
+            <i class="fas fa-search"></i>
+            <div>
+                <h4>Guardian RFID Reader</h4>
+                <p>An advanced RFID reader designed to instantly detect and authenticate AccessKey RFID cards. It communicates securely with SecureLock One to grant or deny access based on stored credentials, ensuring a fast and reliable user experience.</p>
+            </div>
+        </li>
+
+        <li>
+            <i class="fas fa-tachometer-alt"></i>
+            <div>
+                <h4>RemoteVault Admin Panel</h4>
+                <p>A powerful web-based dashboard that allows administrators to manage user access, monitor entry logs, and remotely lock or unlock doors. Integrated with multi-factor authentication, RemoteVault ensures robust and secure access management for both residential and commercial spaces.</p>
+            </div>
+        </li>
+
+        <li>
+            <i class="fas fa-mobile-alt"></i>
+            <div>
+                <h4>SafePass Web App</h4>
+                <p>A mobile-friendly companion app providing real-time monitoring and remote control of the SecureLock One system. With SafePass, users can unlock doors, manage access permissions, receive security alerts, and view access history from their smartphones for enhanced convenience and control.</p>
+            </div>
+        </li>
+    </ul>
+
+    <p>Our mission is to revolutionize how people secure their spaces, blending innovation, functionality, and simplicity for smarter access solutions.</p>
+    
+</div>
+
+</body>
+</html>
