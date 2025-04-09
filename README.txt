@@ -31,3 +31,8 @@ Restored C:\Users\nanak\source\repos\RFIDlock\RFIDlock.csproj (in 175 ms).
 1235 Clean and Build Solution
 0100 Made changes to site.css to change the website from white to black
 0102 push to git
+
+2025-04-08
+0842 Made changes to Layout.cshtml and site.css
+0843 changed backgroud colour to white, changed logo
+0850 Made changes to Products.cshtml
