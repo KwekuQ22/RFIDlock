@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Concurrent;
 
 namespace RFIDlock.Controllers
 {
@@ -6,12 +7,12 @@ namespace RFIDlock.Controllers
     [Route("api/[controller]")]
     public class LockController : ControllerBase
     {
+        private static readonly ConcurrentDictionary<string, string> _commands = new();
+
         // POST: api/lock/lock
         [HttpPost("lock")]
         public IActionResult LockDoor()
         {
-            // Simulate locking logic
-            // In real case, you'd interface with the Arduino or hardware API
             return Ok(new { status = "locked", message = "Door has been locked." });
         }
 
@@ -19,7 +20,6 @@ namespace RFIDlock.Controllers
         [HttpPost("unlock")]
         public IActionResult UnlockDoor()
         {
-            // Simulate unlocking logic
             return Ok(new { status = "unlocked", message = "Door has been unlocked." });
         }
 
@@ -27,8 +27,37 @@ namespace RFIDlock.Controllers
         [HttpGet("status")]
         public IActionResult GetDoorStatus()
         {
-            // Placeholder: you could connect this to actual RFID door status
-            return Ok(new { status = "locked" }); // or "unlocked"
+            return Ok(new { status = "locked" }); // Placeholder
+        }
+
+        // GET: api/lock/command?mac=ESP123
+        [HttpGet("command")]
+        public IActionResult GetCommand([FromQuery] string mac)
+        {
+            if (string.IsNullOrWhiteSpace(mac))
+                return BadRequest("MAC address is required.");
+
+            if (_commands.TryGetValue(mac, out string command))
+                return Ok(command);
+
+            return Ok("NONE");
+        }
+
+        // POST: api/lock/command (JSON body: { "mac": "ESP123", "command": "LOCK" })
+        [HttpPost("command")]
+        public IActionResult SetCommand([FromBody] CommandRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Mac) || string.IsNullOrWhiteSpace(request.Command))
+                return BadRequest("Missing MAC or command.");
+
+            _commands[request.Mac] = request.Command.ToUpper();
+            return Ok(new { success = true, message = $"Command '{request.Command}' set for {request.Mac}" });
+        }
+
+        public class CommandRequest
+        {
+            public string Mac { get; set; }
+            public string Command { get; set; }
         }
     }
 }

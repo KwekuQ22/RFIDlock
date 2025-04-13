@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RFIDlock.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RFIDlock.Controllers
 {
@@ -18,6 +19,7 @@ namespace RFIDlock.Controllers
             return View();
         }
 
+        [Authorize] // <-- Require user to be logged in
         public IActionResult Products()
         {
             return View();

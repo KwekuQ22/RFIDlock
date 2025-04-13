@@ -4,8 +4,13 @@ using RFIDlock.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Allow HTTP access for ESP polling on port 7155
+builder.WebHost.UseUrls("http://192.168.16.196:7155/");
+
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -24,11 +29,10 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -43,8 +47,7 @@ app.MapRazorPages();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate(); // ? This keeps data and updates schema
+    db.Database.Migrate(); // Keep existing data and apply schema changes
 }
-
 
 app.Run();

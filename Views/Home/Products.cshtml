@@ -1,114 +1,66 @@
 ﻿@{
-    ViewData["Title"] = "KOCO Lock";
+    ViewData["Title"] = "SecureLock Control Panel";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <style>
-        /* Set background image for the body */
-        body {
-            background-image: url('/images/doorOpeming.jpg');  /* Correct path */
-            background-size: cover;  
-            background-position: center; 
-            font-family: Arial, sans-serif;  
-            margin: 0;
-            padding: 0;
-        }
+<div class="container mt-5 mb-5">
+    <div class="koco-lock-panel mx-auto shadow p-4 rounded bg-white text-center" style="max-width: 500px;">
+        <!-- Buttons -->
+        <div class="mb-3">
+            <button class="btn btn-danger m-1" onclick="sendCommand('LOCK')">🔒 Lock Door</button>
+            <button class="btn btn-success m-1" onclick="sendCommand('UNLOCK')">🔓 Unlock Door</button>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-danger m-1" onclick="sendCommand('DISABLE')">🚫 Disable RFID</button>
+            <button class="btn btn-success m-1" onclick="sendCommand('ENABLE')">✅ Enable RFID</button>
+        </div>
 
-        /* Styling the container */
-        .container {
-            text-align: center;
-            padding: 50px;
-        }
+        <!-- Status -->
+        <div id="statusText" class="fw-bold text-dark my-2">📦 Door Status: <span class="text-primary">Unlocked</span></div>
+        <div id="rfidStatus" class="fw-bold text-dark my-2">🔄 RFID Reader: <span class="text-success">Enabled</span></div>
 
-        /* Lock/Unlock button styling */
-        .button {
-            font-size: 20px;
-            padding: 15px 30px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .button.lock {
-            background-color: #FF5722;  /* Red for lock */
-            color: black;
-        }
-
-        .button.unlock {
-            background-color: #4CAF50;  /* Green for unlock */
-            color: black;
-        }
-
-        .button:hover {
-            opacity: 0.8;
-        }
-
-        /* Lock/Unlock status text styling */
-        .status {
-            font-size: 30px;
-            margin-top: 20px;
-            color: black;
-            font-weight: bold;
-        }
-
-        /* Styling for the image inside the toggle */
-        .toggle-img {
-            width: 200px;
-            height: auto;
-            margin-top: 30px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Optional: Image transition effect */
-        .locked img {
-            transform: scale(0.9); /* Image shrinks when locked */
-        }
-
-        .unlocked img {
-            transform: scale(1); /* Image returns to normal size when unlocked */
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>@ViewData["Title"]</h1>
-
-        <div id="statusText" class="status">Door Status: Unlocked</div>
-
-        <!-- Lock/Unlock Buttons -->
-        <button class="button lock" onclick="changeLockStatus('locked')">Lock Door</button>
-        <button class="button unlock" onclick="changeLockStatus('unlocked')">Unlock Door</button>
-
-        <!-- Image showing the state of the door -->
-        <div id="doorImage" class="unlocked">
-            <img class="toggle-img" src="/images/smartDoorLock.jpg" alt="Lock Image">
+        <!-- Door Image -->
+        <div id="doorImage" class="unlocked mt-3 border rounded p-2" style="border: 2px solid #5cb85c;">
+            <img src="/images/smartDoorLock.jpg" alt="Lock Image" class="img-fluid rounded" />
         </div>
     </div>
+</div>
 
-    <script>
-        // Function to change the lock status
-        function changeLockStatus(status) {
-            const statusText = document.getElementById('statusText');
-            const doorImage = document.getElementById('doorImage');
+<script>
+    const mac = "ESP123"; // Replace with your MAC if needed
 
-            if (status === 'locked') {
-                statusText.innerText = 'Door Status: Locked';
-                doorImage.className = 'locked';  // Apply the locked class
-            } else {
-                statusText.innerText = 'Door Status: Unlocked';
-                doorImage.className = 'unlocked';  // Apply the unlocked class
-            }
+    async function sendCommand(command) {
+        try {
+            await fetch('/api/lock/command', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mac, command })
+            });
+            updateUI(command);
+        } catch (err) {
+            alert("❌ Failed to send command.");
         }
-    </script>
+    }
 
-</body>
-</html>
+    function updateUI(command) {
+        const statusText = document.getElementById('statusText');
+        const rfidStatus = document.getElementById('rfidStatus');
+        const doorImage = document.getElementById('doorImage');
+
+        switch (command) {
+            case 'LOCK':
+                statusText.innerHTML = '📦 Door Status: <span class="text-danger">Locked</span>';
+                doorImage.style.borderColor = "#d9534f";
+                break;
+            case 'UNLOCK':
+                statusText.innerHTML = '📦 Door Status: <span class="text-success">Unlocked</span>';
+                doorImage.style.borderColor = "#5cb85c";
+                break;
+            case 'DISABLE':
+                rfidStatus.innerHTML = '🔌 RFID Reader: <span class="text-danger">Disabled</span>';
+                break;
+            case 'ENABLE':
+                rfidStatus.innerHTML = '🔄 RFID Reader: <span class="text-success">Enabled</span>';
+                break;
+        }
+    }
+</script>
